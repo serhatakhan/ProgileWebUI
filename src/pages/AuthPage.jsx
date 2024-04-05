@@ -1,9 +1,13 @@
 const AuthPage = () => {
+
+  let path = "/Users/serhat/Desktop/ProgileWebUI/public/postit.png"
+
   return (
     <div className="auth-sec">
       <div className="left-sec">
         <form>
           <h3>Log in</h3>
+          <img src="/postit2.png" height={100} className="postit" />
 
           <label htmlFor="username">Username</label>
           <input type="text" placeholder="Email or Phone" id="username" />
