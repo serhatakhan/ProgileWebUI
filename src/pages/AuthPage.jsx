@@ -15,6 +15,7 @@ const AuthPage = () => {
 
           <div className="social-option">
             <div>
+              
               <hr className="social-line" />
             </div>
             <div className="social-p">or</div>
