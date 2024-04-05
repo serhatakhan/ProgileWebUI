@@ -1,12 +1,15 @@
-const AuthPage = () => {
+import { FaGoogle } from "react-icons/fa";
+import { IoLogoGithub } from "react-icons/io";
+import { FaLinkedin } from "react-icons/fa";
 
-  let path = "/Users/serhat/Desktop/ProgileWebUI/public/postit.png"
+const AuthPage = () => {
 
   return (
     <div className="auth-sec">
       <div className="left-sec">
         <form>
-          <h3>Log in</h3>
+          <h3 >Log in</h3>
+
           <img src="/postit2.png" height={100} className="postit" />
 
           <label htmlFor="username">Username</label>
@@ -28,9 +31,9 @@ const AuthPage = () => {
           </div>
 
           <div className="social">
-            <div className="go">Google logo koy</div>
-            <div className="fb">Github logo koy</div>
-            <div className="in">Linkedın logo koy</div>
+            <div className="go soc-icon"><FaGoogle /> </div>
+            <div className="fb soc-icon"><IoLogoGithub/></div>
+            <div className="in soc-icon"><FaLinkedin /></div>
           </div>
 
           <div className="sign">
@@ -38,6 +41,8 @@ const AuthPage = () => {
           </div>
         </form>
       </div>
+
+      <div className="mid-sec"></div>
 
       <div className="right-sec">
         <img src="/bg-right.png" height={650} />

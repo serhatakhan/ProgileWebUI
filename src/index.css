@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 * {
   margin: 0;
   padding: 0;
@@ -12,13 +13,15 @@ body {
   background-attachment: fixed;
   background-position: center; */
   background: #111827;
+  font-family: "Ubuntu", sans-serif;
 }
 
+/* LOGIN FROM START */
 .auth-sec{
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto 10% 45%;
   align-items: center;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   padding: 50px;
 }
 
@@ -41,6 +44,11 @@ body {
   filter: drop-shadow(0px 15px 10px #000);
 }
 
+.right-sec{
+  width: 100%;
+
+}
+
 .right-sec img{
   width: 100%;
   display: flex;
@@ -51,6 +59,9 @@ body {
 
 @media (max-width:1200px) {
   .right-sec img{
+    display: none;
+  }
+  .mid-sec{
     display: none;
   }
 
@@ -79,6 +90,7 @@ form h3 {
   font-weight: 700;
   line-height: 42px;
   text-align: center;
+  font-family: "Ubuntu", sans-serif;
 }
 
 
@@ -87,6 +99,7 @@ label {
   margin-top: 30px;
   font-size: 16px;
   font-weight: 500;
+  font-family: "Ubuntu", sans-serif;
 }
 
 input {
@@ -121,8 +134,6 @@ button {
   cursor: pointer;
 }
 
-
-
 .social-option{
   margin-top: 30px;
   display: grid;
@@ -147,23 +158,29 @@ button {
   margin-top: 30px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 20px;
+  justify-content: center;
+  gap: 70px;
+}
+
+.soc-icon{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  cursor: pointer;
 }
 
 .social div {
-  background: red;
-  width: 150px;
-  border-radius: 3px;
-  padding: 5px 10px 10px 5px;
+  /* width: 3rem; */
+  border-radius: 50%;
+  padding: 10px;
   background-color: rgba(255, 255, 255, 0.27);
   color: #eaf0fb;
-  text-align: center;
+  transition: all .3s ease;
 }
 
 .social div:hover {
-  background-color: rgba(255, 255, 255, 0.47);
-  
+  background-color: #055DB4;
 }
 
 .sign{
@@ -180,3 +197,4 @@ button {
 .sign span:hover{
   text-decoration: underline;
 }
+/* LOGIN FORM END */
