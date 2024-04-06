@@ -16,18 +16,26 @@ body {
   font-family: "Ubuntu", sans-serif;
 }
 
+
 /* LOGIN FROM START */
-.auth-sec{
-  display: grid;
-  grid-template-columns: auto 10% 45%;
+.content{
+  display: flex;
   align-items: center;
-  /* justify-content: space-around; */
-  padding: 50px;
+  justify-content: space-around;
+  height: 100vh;
+  width: auto;
+}
+
+
+.auth-sec{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
 }
 
 .left-sec{
-  width: 100%;
-  height: auto;
+  width: 500px;
   background-color: #1F2937;
   border-radius: 10px;
   backdrop-filter: blur(35px);
@@ -45,12 +53,11 @@ body {
 }
 
 .right-sec{
-  width: 100%;
-
+  width: 500px;
 }
 
 .right-sec img{
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -58,7 +65,7 @@ body {
 }
 
 @media (max-width:1200px) {
-  .right-sec img{
+  .right-sec{
     display: none;
   }
   .mid-sec{
@@ -77,7 +84,7 @@ body {
 
 }
 
-form * {
+.left-sec * {
   font-family: "Poppins", sans-serif;
   color: #ffffff;
   letter-spacing: 0.5px;
@@ -85,7 +92,7 @@ form * {
   border: none;
 }
 
-form h3 {
+.left-sec h3 {
   font-size: 40px;
   font-weight: 700;
   line-height: 42px;
@@ -122,7 +129,7 @@ input:hover{
   outline: 2px solid rgba(0, 0, 0, 0.23);
 }
 
-button {
+.auth-sec button {
   margin-top: 28px;
   width: 100%;
   background-color: #ffffff;
@@ -132,6 +139,16 @@ button {
   font-weight: 600;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.auth-sec button:hover {
+  background-color: #379cf8;
+  opacity: 0.8; /* Opaklık değeri */
+}
+
+.auth-sec button:active{
+  background-color: #1f63a3;
 }
 
 .social-option{
