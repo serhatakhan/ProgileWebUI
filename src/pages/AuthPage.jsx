@@ -5,9 +5,13 @@ import { FaLinkedin } from "react-icons/fa";
 const AuthPage = () => {
     return (
         <div className="content">
+            <div className="header">
+                <div className="logo_section">
+                    <img src="../../public/logo.jpg" alt="" />
+                </div>
+            </div>
             <div className="auth-sec">
                 <div className="left-sec">
-                    {/* <form> */}
                     <h3>Log in</h3>
 
                     <img src="/postit2.png" height={100} className="postit" />
@@ -51,9 +55,12 @@ const AuthPage = () => {
                     </div>
 
                     <div className="sign">
-                        Don't have an account? <span>Sign up</span>
+                        Don't have an account? &nbsp;&nbsp;
+                        <span className="sign_up_spn">
+                            <b>Register Now!</b>
+                        </span>
+                        <div class="box"></div>
                     </div>
-                    {/* </form> */}
                 </div>
 
                 <div className="right-sec">
