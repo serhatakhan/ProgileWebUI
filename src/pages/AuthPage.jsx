@@ -1,74 +1,114 @@
+import { useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { IoLogoGithub } from "react-icons/io";
 import { FaLinkedin } from "react-icons/fa";
 
 const AuthPage = () => {
-    return (
-        <div className="content">
-            <div className="header">
-                <div className="logo_section">
-                    <img src="../../public/logo.jpg" alt="" />
-                </div>
-            </div>
-            <div className="auth-sec">
-                <div className="left-sec">
-                    <h3>Log in</h3>
+  // tıklama olayının state'ini tut
+  const [isSignUp, setIsSignUp] = useState(true);
 
-                    <img src="/postit2.png" height={100} className="postit" />
+  const handleSignUpClick = () => {
+    setIsSignUp(true);
+  };
 
-                    <label htmlFor="username">Username</label>
-                    <input
-                        type="text"
-                        placeholder="Email or Phone"
-                        id="username"
-                    />
+  const handleSignInClick = () => {
+    setIsSignUp(false);
+  };
 
-                    <label htmlFor="password">Password</label>
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        id="password"
-                    />
-
-                    <button>Log In</button>
-
-                    <div className="social-option">
-                        <div>
-                            <hr className="social-line" />
-                        </div>
-                        <div className="social-p">or</div>
-                        <div>
-                            <hr className="social-line" />
-                        </div>
-                    </div>
-
-                    <div className="social">
-                        <div className="go soc-icon">
-                            <FaGoogle />{" "}
-                        </div>
-                        <div className="fb soc-icon">
-                            <IoLogoGithub />
-                        </div>
-                        <div className="in soc-icon">
-                            <FaLinkedin />
-                        </div>
-                    </div>
-
-                    <div className="sign">
-                        Don't have an account? &nbsp;&nbsp;
-                        <span className="sign_up_spn">
-                            <b>Register Now!</b>
-                        </span>
-                        <div class="box"></div>
-                    </div>
-                </div>
-
-                <div className="right-sec">
-                    <img src="/bg-right.png" height={650} />
-                </div>
-            </div>
+  return (
+    <div className="content">
+      <div className="header">
+        <div className="logo_section">
+          <img src="/public/logo.jpg" alt="logo" />
         </div>
-    );
+      </div>
+
+      <div className="auth-sec">
+        <div
+          className={`container ${isSignUp ? "right-panel-active" : ""}`}
+          id="main"
+        >
+          {/* <img src="/postit2.png" height={100} className="postit" /> */}
+          <div className="sign-up">
+            <form action="#">
+              <h1>Create Account</h1>
+              <div className="social-container">
+                <a href="#" className="social">
+                  <FaGoogle />
+                </a>
+                <a href="#" className="social">
+                  <IoLogoGithub />
+                </a>
+                <a href="#" className="social">
+                  <FaLinkedin />
+                </a>
+              </div>
+              <p>or use your email for registration</p>
+              <input type="text" name="txt" placeholder="Name" required="" />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                required=""
+              />
+              <input
+                type="password"
+                name="pswd"
+                placeholder="Password"
+                required=""
+              />
+              <button>Register</button>
+            </form>
+          </div>
+          <div className="sign-in">
+            <form action="#">
+              <h1>Sign in</h1>
+              <div className="social-container">
+                <a href="#" className="social">
+                  <FaGoogle />
+                </a>
+                <a href="#" className="social">
+                  <IoLogoGithub />
+                </a>
+                <a href="#" className="social">
+                  <FaLinkedin />
+                </a>
+              </div>
+              <p>or use your account</p>
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                required=""
+              />
+              <input
+                type="password"
+                name="pswd"
+                placeholder="Password"
+                required=""
+              />
+              <a href="#" style={{color: "#fff"}}>Forget your Password?</a>
+              <button>Sign In</button>
+            </form>
+          </div>
+          <div className="overlay-container">
+            <div className="overlay">
+              <div className="overlay-left">
+                <button id="signIn" onClick={handleSignInClick}>
+                  Sign In
+                </button>
+              </div>
+              <div className="overlay-right">
+                <button id="signUp" onClick={handleSignUpClick}>
+                  Register
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default AuthPage;
