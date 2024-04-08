@@ -28,7 +28,11 @@ const AuthPage = () => {
                     }`}
                     id="main"
                 >
-                    <img src="../progile_logo3.png" className="login_logo" alt="logo" />
+                    <img
+                        src="../progile_logo3.png"
+                        className="login_logo"
+                        alt="logo"
+                    />
 
                     <div className="sign-up">
                         <form action="#">
