@@ -17,6 +17,7 @@ const AuthPage = () => {
 
     return (
         <div className="content">
+            <link rel="stylesheet" href="src\styles\auth.css" />
             {/* <div className="header">
                 <img src="../progile_logo3.png" alt="logo" />
             </div> */}
@@ -29,7 +30,7 @@ const AuthPage = () => {
                     id="main"
                 >
                     <img
-                        src="../progile_logo3.png"
+                        src="/progile_logo3.png"
                         className="login_logo"
                         alt="logo"
                     />
