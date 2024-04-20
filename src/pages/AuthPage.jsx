@@ -97,7 +97,13 @@ const AuthPage = () => {
                             <a href="#" style={{ color: "#fff" }}>
                                 Forget your Password?
                             </a>
-                            <button>Sign In</button>
+                            {/* <button>Sign In</button> */}
+
+                            <span className={styles.btn}>
+                              <img src="../../public/postit2.png" className={styles.postit}/>
+                              <span className={styles.front}>Sign In 🚀</span>
+                              <span className={styles.back}></span>
+                            </span>
                         </form>
                     </div>
                     <div className={styles.overlay_container}>
