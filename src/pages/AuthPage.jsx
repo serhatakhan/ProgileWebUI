@@ -11,10 +11,42 @@ const AuthPage = () => {
     const handleSignUpClick = () => {
         setIsSignUp(true);
     };
-
     const handleSignInClick = () => {
         setIsSignUp(false);
     };
+
+
+    // hesap oluşturulduğunda formun gönderilme olayını izler
+    const registerSubmit = (e) => {
+        e.preventDefault()
+
+        const formData = new FormData(e.target)
+        const registerData = Object.fromEntries(formData.entries())
+
+        console.log(registerData)
+
+        // api'ye veriyi yolla-post
+
+        // hesap oluşturma başarılı ise kullanıcıya bildir
+
+    }
+
+    // giriş yapılırken formun gönderilme olayını izler
+    const loginSubmit = (e) => {
+        e.preventDefault()
+
+        const formData = new FormData(e.target)
+        const loginData = Object.fromEntries(formData.entries())
+
+        console.log(loginData)
+
+        // 
+
+        // 
+    }
+
+
+
 
     return (
         <div className={styles.content}>
@@ -26,13 +58,13 @@ const AuthPage = () => {
                     id={styles.main}
                 >
                     {/* <img
-            src="/progile_logo3.png"
-            className={styles.login_logo}
-            alt="logo"
-          /> */}
+                        src="/progile_logo3.png"
+                        className={styles.login_logo}
+                        alt="logo"
+                    /> */}
 
                     <div className={styles.sign_up}>
-                        <form action="#">
+                        <form action="#" onSubmit={registerSubmit}>
                             <h1>Create Account</h1>
                             <div className={styles.social_container}>
                                 <a href="#" className={styles.social}>
@@ -48,7 +80,7 @@ const AuthPage = () => {
                             <p>or use your email for registration</p>
                             <input
                                 type="text"
-                                name="txt"
+                                name="name"
                                 placeholder="Name"
                                 required
                             />
@@ -60,15 +92,15 @@ const AuthPage = () => {
                             />
                             <input
                                 type="password"
-                                name="pswd"
+                                name="password"
                                 placeholder="Password"
                                 required=""
                             />
-                            <button>Register</button>
+                            <button type="submit">Register</button>
                         </form>
                     </div>
                     <div className={styles.sign_in}>
-                        <form action="#">
+                        <form action="#" onSubmit={loginSubmit}>
                             <h1>Sign in</h1>
                             <div className={styles.social_container}>
                                 <a href="#" className={styles.social}>
@@ -86,13 +118,13 @@ const AuthPage = () => {
                                 type="email"
                                 name="email"
                                 placeholder="Email"
-                                required=""
+                                required
                             />
                             <input
                                 type="password"
-                                name="pswd"
+                                name="password"
                                 placeholder="Password"
-                                required=""
+                                required
                             />
                             <a href="#" style={{ color: "#fff" }}>
                                 Forget your Password?
