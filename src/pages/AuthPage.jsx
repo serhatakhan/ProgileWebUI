@@ -9,12 +9,9 @@ const AuthPage = () => {
   // tıklama olayının state'ini tut
   const [isSignUp, setIsSignUp] = useState(true);
 
-  const handleSignUpClick = () => {
-    setIsSignUp(true);
-  };
-  const handleSignInClick = () => {
-    setIsSignUp(false);
-  };
+  const handleSignUpClick = () => setIsSignUp(true);
+  const handleSignInClick = () => setIsSignUp(false);
+  
 
   // hesap oluşturulduğunda formun gönderilme olayını izler
   const registerSubmit = (e) => {
@@ -65,24 +62,18 @@ const AuthPage = () => {
     console.log(loginData);
 
     let config = {
-        method: 'post',
-        maxBodyLength: Infinity,
-        url: 'https://96de-212-2-212-128.ngrok-free.app/api/Users/LoginUser',
-        headers: { 
-          'Content-Type': 'application/json', 
-          'Authorization': 'Basic c3JodDE6UEBzc3cwcmQx',
-          'Access-Control-Allow-Origin': "*"
-        },
-
-        data : loginData
+        url: 'https://l0jjdd7c-7212.euw.devtunnels.ms/api/Users/LoginUser',
+        data : loginData,
+        headers: {
+          "X-Tunnel-Authorization": "tunnel eyJhbGciOiJFUzI1NiIsImtpZCI6IjJENTIwNkFFNjVBOTQ5RTlBQTlDRUQ4QTU2M0QxRTBCQzYyRUVENjIiLCJ0eXAiOiJKV1QifQ.eyJjbHVzdGVySWQiOiJldXciLCJ0dW5uZWxJZCI6ImwwampkZDdjIiwic2NwIjoiY29ubmVjdCIsImV4cCI6MTcxNDI0ODM3MCwiaXNzIjoiaHR0cHM6Ly90dW5uZWxzLmFwaS52aXN1YWxzdHVkaW8uY29tLyIsIm5iZiI6MTcxNDE2MTA3MH0.BCcNwX3jSA6z9n-38LfhiUUzorG90mdFRxYIQWGaTHApNy4BqNoA8qjIkwWqZs91LyzTkTjSiEkJx2LvUpn24g"
+        }
       };
       
       axios.post(config.url, loginData, {
-        withCredentials: false,
-        headers: config.headers,
-        withCredentials: true,
-         
+        headers: config.headers
       })
+      .then((res)=> console.log(res.data))
+      .catch((err)=> console.log(err))
       
 
     //
@@ -183,7 +174,7 @@ const AuthPage = () => {
               </div>
               <p>or use your account</p>
               <div className={styles.signin_inputs}>
-                <input type="email" name="email" placeholder="Email" required />
+                <input type="text" name="usernameOrEmail" placeholder="Username or Email" required />
                 <input
                   type="password"
                   name="password"
