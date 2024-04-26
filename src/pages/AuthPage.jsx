@@ -4,6 +4,8 @@ import { IoLogoGithub } from "react-icons/io";
 import { FaLinkedin } from "react-icons/fa";
 import styles from "../styles/auth/auth.module.css";
 import axios from "axios";
+import httpService from "../services/httpClientService";
+import authUrls from '../constants/auth.js'
 
 const AuthPage = () => {
     // tıklama olayının state'ini tut
@@ -51,7 +53,7 @@ const AuthPage = () => {
     };
 
     // giriş yapılırken formun gönderilme olayını izler
-    const loginSubmit = (e) => {
+    const loginSubmit = async (e) => {
         e.preventDefault();
 
         const formData = new FormData(e.target);
@@ -68,12 +70,14 @@ const AuthPage = () => {
             },
         };
 
-        axios
-            .post(config.url, loginData, {
-                headers: config.headers,
-            })
-            .then((res) => console.log(res.data))
-            .catch((err) => console.log(err));
+        await httpService.post(authUrls.LOGIN_URL, config.data, config.headers)
+
+    //     axios
+    //         .post(config.url, loginData, {
+    //             headers: config.headers,
+    //         })
+    //         .then((res) => console.log(res.data))
+    //         .catch((err) => console.log(err));
     };
 
     return (
