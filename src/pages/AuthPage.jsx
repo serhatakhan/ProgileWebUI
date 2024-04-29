@@ -3,9 +3,10 @@ import { FaGoogle } from "react-icons/fa";
 import { IoLogoGithub } from "react-icons/io";
 import { FaLinkedin } from "react-icons/fa";
 import styles from "../styles/auth/auth.module.css";
-import axios from "axios";
 import httpService from "../services/httpClientService";
-import authUrls from '../constants/auth.js'
+import authUrls from "../constants/auth.js";
+import staticValues from "../constants/staticValues.js";
+import toasterService from "../services/ToastrComponent.js";
 
 const AuthPage = () => {
     // tıklama olayının state'ini tut
@@ -15,41 +16,21 @@ const AuthPage = () => {
     const handleSignInClick = () => setIsSignUp(false);
 
     // hesap oluşturulduğunda formun gönderilme olayını izler
-    const registerSubmit = (e) => {
+    const registerSubmit = async (e) => {
         e.preventDefault();
 
         const formData = new FormData(e.target);
         const registerData = Object.fromEntries(formData.entries());
 
-        console.log(registerData);
-
-        // api'ye veriyi yolla-post
-        axios
-            .post(
-                "https://96de-212-2-212-128.ngrok-free.app/api/Users/CreateUser",
-                registerData,
-                {
-                    auth: {
-                        username: "srht1",
-                        password: "P@ssw0rd1",
-                    },
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: "Basic c3JodDE6UEBzc3cwcmQx",
-                    },
-                }
-            )
-            .then((resp) => {
-                console.log(resp);
-                if (resp.data.responseStatus == 2) {
-                    alert(resp.data.errors[0]);
-                }
+        await httpService
+            .post(authUrls.REGISTER_URL, registerData, {
+                "X-Tunnel-Authorization": staticValues.X_TUNNEL_HEADER,
             })
-            .catch((err) => {
-                console.log(err);
+            .then((resp) => {
+                toasterService.success(resp.data.message)
+            }).catch((err) => {
+                toasterService.error(resp.data.message, undefined, undefined, 'red', undefined, undefined)
             });
-
-        // hesap oluşturma başarılı ise kullanıcıya bildir
     };
 
     // giriş yapılırken formun gönderilme olayını izler
@@ -59,29 +40,22 @@ const AuthPage = () => {
         const formData = new FormData(e.target);
         const loginData = Object.fromEntries(formData.entries());
 
-        console.log(loginData);
+        await httpService.post(authUrls.LOGIN_URL, loginData, {
+            "X-Tunnel-Authorization": staticValues.X_TUNNEL_HEADER,
+        });
+    };
 
-        let config = {
-            url: "https://l0jjdd7c-7212.euw.devtunnels.ms/api/Users/LoginUser",
-            data: loginData,
-            headers: {
-                "X-Tunnel-Authorization":
-                    "tunnel eyJhbGciOiJFUzI1NiIsImtpZCI6IjJENTIwNkFFNjVBOTQ5RTlBQTlDRUQ4QTU2M0QxRTBCQzYyRUVENjIiLCJ0eXAiOiJKV1QifQ.eyJjbHVzdGVySWQiOiJldXciLCJ0dW5uZWxJZCI6ImwwampkZDdjIiwic2NwIjoiY29ubmVjdCIsImV4cCI6MTcxNDI0ODM3MCwiaXNzIjoiaHR0cHM6Ly90dW5uZWxzLmFwaS52aXN1YWxzdHVkaW8uY29tLyIsIm5iZiI6MTcxNDE2MTA3MH0.BCcNwX3jSA6z9n-38LfhiUUzorG90mdFRxYIQWGaTHApNy4BqNoA8qjIkwWqZs91LyzTkTjSiEkJx2LvUpn24g",
-            },
-        };
+    const joje = (e) => {
+        e.preventDefault();
 
-        await httpService.post(authUrls.LOGIN_URL, config.data, config.headers)
-
-    //     axios
-    //         .post(config.url, loginData, {
-    //             headers: config.headers,
-    //         })
-    //         .then((res) => console.log(res.data))
-    //         .catch((err) => console.log(err));
+        toasterService.info(
+            "deneme"
+        );
     };
 
     return (
         <div className={styles.content}>
+            <button onClick={joje}>TIKLA</button>
             <div className={styles.auth_sec}>
                 <div
                     className={`${styles.container} ${
@@ -89,7 +63,6 @@ const AuthPage = () => {
                     }`}
                     id={styles.main}
                 >
-
                     <div className={styles.sign_up}>
                         <form action="#" onSubmit={registerSubmit}>
                             <h1>Create Account</h1>
@@ -186,14 +159,7 @@ const AuthPage = () => {
                                 Forget your Password?
                             </a>
 
-                            <button type="submit" className={styles.btn}>
-                                <img
-                                    src="./postit_4.png"
-                                    className={styles.postit}
-                                />
-                                <span className={styles.front}>Sign In</span>
-                                <span className={styles.back}></span>
-                            </button>
+                            <button type="submit">Sign In</button>
                         </form>
                     </div>
                     <div className={styles.overlay_container}>
