@@ -6,10 +6,12 @@ import styles from "../styles/auth/auth.module.css";
 import axios from "axios";
 import httpService from "../services/httpClientService";
 import authUrls from '../constants/auth.js'
+import { useNavigate } from "react-router-dom";
 
 const AuthPage = () => {
     // tıklama olayının state'ini tut
     const [isSignUp, setIsSignUp] = useState(true);
+    const navigate = useNavigate()
 
     const handleSignUpClick = () => setIsSignUp(true);
     const handleSignInClick = () => setIsSignUp(false);
@@ -61,16 +63,36 @@ const AuthPage = () => {
 
         console.log(loginData);
 
-        let config = {
-            url: "https://l0jjdd7c-7212.euw.devtunnels.ms/api/Users/LoginUser",
-            data: loginData,
-            headers: {
-                "X-Tunnel-Authorization":
-                    "tunnel eyJhbGciOiJFUzI1NiIsImtpZCI6IjJENTIwNkFFNjVBOTQ5RTlBQTlDRUQ4QTU2M0QxRTBCQzYyRUVENjIiLCJ0eXAiOiJKV1QifQ.eyJjbHVzdGVySWQiOiJldXciLCJ0dW5uZWxJZCI6ImwwampkZDdjIiwic2NwIjoiY29ubmVjdCIsImV4cCI6MTcxNDI0ODM3MCwiaXNzIjoiaHR0cHM6Ly90dW5uZWxzLmFwaS52aXN1YWxzdHVkaW8uY29tLyIsIm5iZiI6MTcxNDE2MTA3MH0.BCcNwX3jSA6z9n-38LfhiUUzorG90mdFRxYIQWGaTHApNy4BqNoA8qjIkwWqZs91LyzTkTjSiEkJx2LvUpn24g",
-            },
-        };
+        // let config = {
+        //     url: "https://l0jjdd7c-7212.euw.devtunnels.ms/api/Users/LoginUser",
+        //     data: loginData,
+        //     headers: {
+        //         "X-Tunnel-Authorization":
+        //             "tunnel eyJhbGciOiJFUzI1NiIsImtpZCI6IjJENTIwNkFFNjVBOTQ5RTlBQTlDRUQ4QTU2M0QxRTBCQzYyRUVENjIiLCJ0eXAiOiJKV1QifQ.eyJjbHVzdGVySWQiOiJldXciLCJ0dW5uZWxJZCI6ImwwampkZDdjIiwic2NwIjoiY29ubmVjdCIsImV4cCI6MTcxNDI0ODM3MCwiaXNzIjoiaHR0cHM6Ly90dW5uZWxzLmFwaS52aXN1YWxzdHVkaW8uY29tLyIsIm5iZiI6MTcxNDE2MTA3MH0.BCcNwX3jSA6z9n-38LfhiUUzorG90mdFRxYIQWGaTHApNy4BqNoA8qjIkwWqZs91LyzTkTjSiEkJx2LvUpn24g",
+        //     },
+        // };
 
-        await httpService.post(authUrls.LOGIN_URL, config.data, config.headers)
+        // await httpService.post(authUrls.LOGIN_URL, config.data, config.headers)
+
+        axios.post('https://fakestoreapi.com/auth/login', {
+            username: "mor_2314",
+            password: "83r5^_"
+        })
+        .then(res => {
+            console.log(res.data); 
+            localStorage.setItem("token", JSON.stringify(res.data.token))
+            navigate("/todo")
+        })
+        .catch(error => {
+            console.error('Hata:', error);
+        });
+
+
+
+
+
+
+
 
     //     axios
     //         .post(config.url, loginData, {
