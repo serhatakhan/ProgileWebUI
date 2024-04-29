@@ -1,17 +1,24 @@
 import axios from "axios";
+import toasterService from "../services/ToastrComponent.js";
 
 async function post(url, data, header = null) {
     try {
         var result = await axios.post(url, data, {
             headers: header,
-            timeout: 30000
+            timeout: 30000,
         });
 
-        localStorage.setItem('access_token', result.data.data.accessToken);
+        localStorage.setItem("access_token", result.data.data.accessToken);
     } catch (error) {
-        console.log(error);
+        toasterService.error(
+            error.message,
+            undefined,
+            undefined,
+            "red",
+            undefined,
+            undefined
+        );
     }
-    
 }
 
 async function get(url, data, header = null) {
@@ -23,7 +30,7 @@ async function get(url, data, header = null) {
         .catch((err) => console.log(err));
 }
 
-export default{
+export default {
     post,
     get,
 };
