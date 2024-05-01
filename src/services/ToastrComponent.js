@@ -44,7 +44,7 @@ const toasterService = {
         title,
         position = "top-end",
         color = "#fff",
-        background = "#3F72AF",
+        background = "#f76833",
         iconColor = "#112D4E",
         timer = 3000
     ) => {
