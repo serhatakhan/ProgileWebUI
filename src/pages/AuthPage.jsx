@@ -11,14 +11,9 @@ import { useNavigate } from "react-router-dom";
 import ResponseStatus from "../constants/responseStatus.js";
 import { newLineToaster } from "../extensions/stringExtensions.js";
 
-
-const AuthPage = ({loading}) => {
-
-  console.log(loading);
+const AuthPage = ({ setLoading }) => {
   // tıklama olayının state'ini tut
   const [isSignUp, setIsSignUp] = useState(true);
-  // Loader'ın görünüp görünmediğinin state'ini tut
-  const [isShow, setIsShow] = useState(false);
   const navigate = useNavigate();
 
   const handleSignUpClick = () => setIsSignUp(true);
@@ -65,30 +60,30 @@ const AuthPage = ({loading}) => {
 
     const formData = new FormData(e.target);
     const loginData = Object.fromEntries(formData.entries());
-    
-    loading = true;
+
+    // istek çıkmadan loaderı göster
+    setLoading(true);
+
     await httpService
       .post(authUrls.LOGIN_URL, loginData, staticValues.X_TUNNEL_HEADER)
       .then((resp) => {
-
         if (resp.data.responseStatus === ResponseStatus.SUCCESS) {
-            localStorage.setItem("access_token", resp.data.data.accessToken);
-            navigate("/home");
-            toasterService.success(resp.data.message);
-          } 
-          else if (resp.data.responseStatus === ResponseStatus.INFO) {
-            toasterService.info(resp.data.message);
-          }
-          else {
-            toasterService.error(resp.data.message);
-          }
-
+          localStorage.setItem("access_token", resp.data.data.accessToken);
+          navigate("/home");
+          toasterService.success(resp.data.message);
+        } else if (resp.data.responseStatus === ResponseStatus.INFO) {
+          toasterService.info(resp.data.message);
+        } else {
+          toasterService.error(resp.data.message);
+        }
       })
       .catch((err) => {
         toasterService.error(newLineToaster(err));
       });
+      
+    // istekler sona erince loaderı kapat
+    setLoading(false);
   };
-  loading = false;
 
   return (
     <div className={styles.content}>

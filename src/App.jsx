@@ -15,13 +15,15 @@ const App = () => {
     <BrowserRouter>
     {loading && <Loader />}
       <Routes>
-        <Route exact path="/login" element={<AuthPage loading={() => setLoading(loading)} />} />
+        <Route exact path="/login" element={<AuthPage setLoading={setLoading} />} />
+        
         <Route element={<PrivateRoute />}>
           <Route path="/home" element={<HomePage />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/todo" element={<KanbanPage />} />
           <Route path="/settings" element={<SettingsPage />} />
         </Route>
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
