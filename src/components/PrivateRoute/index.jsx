@@ -1,21 +1,24 @@
 import React from "react";
-import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Navigate, Outlet, useNavigate } from "react-router-dom";
+import { isExpired, decodeToken } from "react-jwt";
 
 const PrivateRoute = () => {
-  // lokalden token'i al js verisine çevir değişken at
-  const token = JSON.parse(localStorage.getItem("token"));
-  const location = useLocation();
   const navigate = useNavigate();
+  // lokalden access_token'i al js verisine çevir değişken at
+  const token = localStorage.getItem("access_token");
+  
+  const decodedToken = decodeToken(token); // parçalanmış hali
 
-  const handleLogout = () => {
-    localStorage.removeItem("token"); //tokeni kaldır
-    navigate("/");
-  };
-
-  // token yoksa "/" sayfasına yönlendir
-  if (!token) {
-    return <Navigate to="/" replace />;
+  // token yoksa veya undefined ise veya isExpired(günü geçmiş) ise..
+  if (!token || token === undefined || isExpired(token)) {
+    localStorage.clear();
+    return <Navigate to="/login" replace />;
   }
+  
+  const handleLogout = () => {
+    localStorage.clear(); // lokaldeki(token dahil) kullanıcıya ait tim bilgileri sil
+    navigate("/login");
+  };
 
   // token varsa
   return token ? (
@@ -24,7 +27,7 @@ const PrivateRoute = () => {
       <button onClick={handleLogout}>Çıkış Yap</button>
     </>
   ) : (
-    <Navigate to="/" replace />
+    <Navigate to="/login" replace />
   );
 };
 
