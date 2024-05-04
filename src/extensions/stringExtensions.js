@@ -1,5 +1,6 @@
 function newLineToaster(inputString) {
-    return inputString.replace("-", "\n\n");
+    if(inputString.includes("-")) return inputString.replace("-", "\n\n");
+    return inputString
 }
 
 export { newLineToaster };

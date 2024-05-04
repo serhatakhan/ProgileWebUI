@@ -67,6 +67,7 @@ const AuthPage = ({ setLoading }) => {
     await httpService
       .post(authUrls.LOGIN_URL, loginData, staticValues.X_TUNNEL_HEADER)
       .then((resp) => {
+        console.log(resp);
         if (resp.data.responseStatus === ResponseStatus.SUCCESS) {
           localStorage.setItem("access_token", resp.data.data.accessToken);
           navigate("/home");
@@ -78,7 +79,8 @@ const AuthPage = ({ setLoading }) => {
         }
       })
       .catch((err) => {
-        toasterService.error(newLineToaster(err));
+        toasterService.error(newLineToaster(err.message));
+        console.log(err);
       });
       
     // istekler sona erince loaderı kapat
