@@ -65,13 +65,15 @@ const AuthPage = ({ setLoading }) => {
     setLoading(true);
 
     await httpService
-      .post(authUrls.LOGIN_URL, loginData, staticValues.X_TUNNEL_HEADER)
+      .post(authUrls.LOGIN_URL, loginData, {
+        "X-Tunnel-Authorization": staticValues.X_TUNNEL_HEADER,
+      })
       .then((resp) => {
         console.log(resp);
         if (resp.data.responseStatus === ResponseStatus.SUCCESS) {
           localStorage.setItem("access_token", resp.data.data.accessToken);
           navigate("/home");
-          toasterService.success(resp.data.message);
+          // toasterService.success(resp.data.message);
         } else if (resp.data.responseStatus === ResponseStatus.INFO) {
           toasterService.info(resp.data.message);
         } else {
