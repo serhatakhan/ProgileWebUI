@@ -157,7 +157,7 @@ const AuthPage = ({ setLoading }) => {
                 </div>
               </div>
 
-              <button type="submit">Register</button>
+              <button type="submit" className={styles.authBtn}>Register</button>
             </form>
           </div>
           <div className={styles.sign_in}>
@@ -194,18 +194,18 @@ const AuthPage = ({ setLoading }) => {
                 Forget your Password?
               </a>
 
-              <button type="submit">Sign In</button>
+              <button type="submit" className={styles.authBtn}>Sign In</button>
             </form>
           </div>
           <div className={styles.overlay_container}>
             <div className={styles.overlay}>
               <div className={styles["overlay-left"]}>
-                <button id={styles.signIn} onClick={handleSignInClick}>
+                <button id={styles.signIn} onClick={handleSignInClick} className={styles.authBtn}>
                   Sign In
                 </button>
               </div>
               <div className={styles["overlay-right"]}>
-                <button id={styles.signUp} onClick={handleSignUpClick}>
+                <button id={styles.signUp} onClick={handleSignUpClick} className={styles.authBtn}>
                   Register
                 </button>
               </div>

@@ -89,7 +89,7 @@ a {
   text-decoration: none;
   margin: 15px 0;
 }
-button {
+.authBtn {
   color: #fff;
   background: var(--bg-dark);
   font-size: 12px;
@@ -351,15 +351,3 @@ input {
   /* border: 1px solid #000; */
   transition: all 0.3s;
 }
-
-/* .back{
-  width: 210px;
-  height: 55px;
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  background: rgb(22, 57, 97);
-  border-radius: 5px;
-  padding: 10px 20px;
-  color: #fff;
-} */

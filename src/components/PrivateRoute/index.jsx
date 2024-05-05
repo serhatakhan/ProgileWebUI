@@ -1,6 +1,9 @@
 import React from "react";
 import { Navigate, Outlet, useNavigate } from "react-router-dom";
 import { isExpired, decodeToken } from "react-jwt";
+import ProgileNavigatebar from './../MainComponents/ProgileNavigatebar';
+import ProgileSidebar from './../MainComponents/ProgileSidebar';
+import styles from "../../styles/mainStyles/main.module.css"
 
 const PrivateRoute = () => {
   const navigate = useNavigate();
@@ -22,10 +25,20 @@ const PrivateRoute = () => {
 
   // token varsa
   return token ? (
-    <>
-      <Outlet />
-      <button onClick={handleLogout}>Çıkış Yap</button>
-    </>
+    <div>
+      <header className={styles.header}>
+        <ProgileNavigatebar />
+      </header>
+
+      <div className={styles.mainContent}>
+        <aside>
+          <ProgileSidebar />
+        </aside>
+        <div className={styles.outlet}>
+          <Outlet />
+        </div>
+      </div>
+    </div>
   ) : (
     <Navigate to="/login" replace />
   );
