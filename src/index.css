@@ -5,4 +5,11 @@
     list-style: none;
 }
 
+.active{
+    /* important vererek diğer css'ler tarafından ezilmesini engelledik */
+    color: #112D4E !important;
+    background: #DBE2EF;
+    font-weight: 600 !important;
+}
 
+  
