@@ -10,6 +10,8 @@ import toasterService from "../services/ToastrComponent.js";
 import { useNavigate } from "react-router-dom";
 import ResponseStatus from "../constants/responseStatus.js";
 import { newLineToaster } from "../extensions/stringExtensions.js";
+import localStorageService from "../services/localStorageService.js";
+
 
 const AuthPage = ({ setLoading }) => {
   // tıklama olayının state'ini tut
@@ -43,14 +45,7 @@ const AuthPage = ({ setLoading }) => {
         }
       })
       .catch((err) => {
-        toasterService.error(
-          err,
-          undefined,
-          undefined,
-          "red",
-          undefined,
-          undefined
-        );
+        toasterService.error(title = err, color = "red");
       });
   };
 
@@ -71,9 +66,10 @@ const AuthPage = ({ setLoading }) => {
       .then((resp) => {
         console.log(resp);
         if (resp.data.responseStatus === ResponseStatus.SUCCESS) {
-          localStorage.setItem("access_token", resp.data.data.accessToken);
+
+          localStorageService.loginProcesses(resp.data.data.accessToken); // local storage'a gerekli bilgiler set edilir.
           navigate("/home");
-          // toasterService.success(resp.data.message);
+          
         } else if (resp.data.responseStatus === ResponseStatus.INFO) {
           toasterService.info(resp.data.message);
         } else {

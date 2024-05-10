@@ -1,47 +1,45 @@
 import React from "react";
 import { Navigate, Outlet, useNavigate } from "react-router-dom";
-import { isExpired, decodeToken } from "react-jwt";
-import ProgileNavigatebar from './../MainComponents/ProgileNavigatebar';
-import ProgileSidebar from './../MainComponents/ProgileSidebar';
-import styles from "../../styles/mainStyles/main.module.css"
+import { isExpired } from "react-jwt";
+import ProgileNavigatebar from "./../MainComponents/ProgileNavigatebar";
+import ProgileSidebar from "./../MainComponents/ProgileSidebar";
+import styles from "../../styles/mainStyles/main.module.css";
 
 const PrivateRoute = () => {
-  const navigate = useNavigate();
-  // lokalden access_token'i al js verisine çevir değişken at
-  const token = localStorage.getItem("access_token");
-  
-  const decodedToken = decodeToken(token); // parçalanmış hali
+    const navigate = useNavigate();
+    // lokalden access_token'i al js verisine çevir değişken at
+    const token = localStorage.getItem("access_token");
 
-  // token yoksa veya undefined ise veya isExpired(günü geçmiş) ise..
-  if (!token || token === undefined || isExpired(token)) {
-    localStorage.clear();
-    return <Navigate to="/login" replace />;
-  }
-  
-  const handleLogout = () => {
-    localStorage.clear(); // lokaldeki(token dahil) kullanıcıya ait tim bilgileri sil
-    navigate("/login");
-  };
+    // token yoksa veya undefined ise veya isExpired(günü geçmiş) ise..
+    if (!token || token === undefined || isExpired(token)) {
+        localStorage.clear();
+        return <Navigate to="/login" replace />;
+    }
 
-  // token varsa
-  return token ? (
-    <div>
-      <header className={styles.header}>
-        <ProgileNavigatebar />
-      </header>
+    const handleLogout = () => {
+        localStorage.clear(); // lokaldeki(token dahil) kullanıcıya ait tim bilgileri sil
+        navigate("/login");
+    };
 
-      <div className={styles.mainContent}>
-        <aside>
-          <ProgileSidebar />
-        </aside>
-        <div className={styles.outlet}>
-          <Outlet />
+    // token varsa
+    return token ? (
+        <div>
+            <header className={styles.header}>
+                <ProgileNavigatebar />
+            </header>
+
+            <div className={styles.mainContent}>
+                <aside>
+                    <ProgileSidebar />
+                </aside>
+                <div className={styles.outlet}>
+                    <Outlet />
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  ) : (
-    <Navigate to="/login" replace />
-  );
+    ) : (
+        <Navigate to="/login" replace />
+    );
 };
 
 export default PrivateRoute;

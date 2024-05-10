@@ -49,9 +49,26 @@ aside {
 .navbar{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 10px;
     width: 100%;
+}
+
+.userSection{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.userProfileSec{
+    border: none;
+    border-radius: 100px;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
 }
 
 .navbar a{
