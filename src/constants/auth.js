@@ -1,4 +1,4 @@
-const API_BASE_URL = `https://cn351j77-7212.euw.devtunnels.ms`;
+const API_BASE_URL = `https://cffb-212-2-212-128.ngrok-free.app`;
 
 const LOGIN_URL = `${API_BASE_URL}/api/Users/LoginUser`;
 const REGISTER_URL = `${API_BASE_URL}/api/Users/CreateUser`

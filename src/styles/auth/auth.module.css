@@ -251,7 +251,7 @@ button:active {
   width: 100%;
 }
 
-input {
+.auth_input {
   display: block;
   height: 50px;
   width: 100%;

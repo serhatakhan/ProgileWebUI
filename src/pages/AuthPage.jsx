@@ -117,18 +117,23 @@ const AuthPage = ({ setLoading }) => {
                     name="firstName"
                     placeholder="Firstname"
                     required
+                    className={styles.auth_input}
                   />
                   <input
                     type="text"
                     name="lastName"
                     placeholder="Lastname"
                     required
+                    className={styles.auth_input}
+
                   />
                   <input
                     type="password"
                     name="password"
                     placeholder="Password"
                     required=""
+                    className={styles.auth_input}
+
                   />
                 </div>
                 <div className={styles.second_column}>
@@ -137,18 +142,24 @@ const AuthPage = ({ setLoading }) => {
                     name="userName"
                     placeholder="Username"
                     required
+                    className={styles.auth_input}
+
                   />
                   <input
                     type="email"
                     name="email"
                     placeholder="Email"
                     required=""
+                    className={styles.auth_input}
+
                   />
                   <input
                     type="password"
                     name="passwordConfirm"
                     placeholder="Password Confirm"
                     required=""
+                    className={styles.auth_input}
+
                   />
                 </div>
               </div>
@@ -177,12 +188,16 @@ const AuthPage = ({ setLoading }) => {
                   name="usernameOrEmail"
                   placeholder="Username or Email"
                   required
+                  className={styles.auth_input}
+
                 />
                 <input
                   type="password"
                   name="password"
                   placeholder="Password"
                   required
+                  className={styles.auth_input}
+
                 />
               </div>
 
